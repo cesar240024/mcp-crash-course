@@ -9,9 +9,12 @@ from langgraph.prebuilt import create_react_agent
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 
+
+
+
 load_dotenv() 
 
-llm = ChatOpenAI()
+llm = ChatOpenAI(model="gpt-4")
 
 stdio_server_params = StdioServerParameters(
     command="python",
@@ -27,7 +30,8 @@ async def main():
 
             agent = create_react_agent(llm, tools)
 
-            result = await agent.ainvoke({"messages": [HumanMessage(content="What is 2 + 2?")]})
+            result = await agent.ainvoke({"messages": [HumanMessage(content="Hola, saludame con la tool saludar")
+]})
             print(result["messages"][-1].content)
 
 
